@@ -67,7 +67,7 @@ class CustomSearchDelegate extends SearchDelegate {
   ];
 
   @override
-  String  get searchFieldLabel => 'Buscar en el carrito';
+  String  get searchFieldLabel => 'Buscar en el carritoo';
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
