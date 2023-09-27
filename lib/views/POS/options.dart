@@ -16,20 +16,32 @@ class Options extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            icon: ImageHelpers().svgImage(
-                url: 'assets/search.svg',
-                width: 20,
-                height: 20,
-                color: Colors.black),
+          Expanded(
+              child: TextButton(
+            style: TextButton.styleFrom(
+              alignment: Alignment.centerLeft,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageHelpers().svgImage(
+                    url: 'assets/search.svg',
+                    width: 20,
+                    height: 20,
+                    color: Colors.black),
+                const SizedBox(
+                  width: 2,
+                ),
+                Text(
+                  'Buscar en el carrito',
+                  style: TextStyle(color: Colors.black.withOpacity(0.2)),
+                )
+              ],
+            ),
             onPressed: () {
-              showSearch(
-                context: context,
-                delegate: CustomSearchDelegate(),
-              );
+              showSearch(context: context, delegate: CustomSearchDelegate());
             },
-          ),
-          const Expanded(child: SizedBox()),
+          )),
           IconButton(
             icon: ImageHelpers().svgImage(
                 url: 'assets/barcode.svg',
@@ -61,41 +73,40 @@ class Options extends StatelessWidget {
 }
 
 class CustomSearchDelegate extends SearchDelegate {
-
-  List<String> searchTerms = [
-
-  ];
+  List<String> searchTerms = [];
 
   @override
-  String  get searchFieldLabel => 'Buscar en el carritoo';
+  String get searchFieldLabel => 'Buscar en el carritoo';
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      IconButton(onPressed: (){
-        query = '';
-      },
-       icon: const Icon(Icons.clear))
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(onPressed: (){
-      close(context, null);
-    },
-     icon: const Icon(Icons.arrow_back));
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for(var product in searchTerms){
-      if(product.toLowerCase().contains(query.toLowerCase())){
+    for (var product in searchTerms) {
+      if (product.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(product);
       }
     }
     return ListView.builder(
-      itemCount:  matchQuery.length,
+      itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
         return ListTile(
@@ -107,14 +118,14 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-     List<String> matchQuery = [];
-    for(var product in searchTerms){
-      if(product.toLowerCase().contains(query.toLowerCase())){
+    List<String> matchQuery = [];
+    for (var product in searchTerms) {
+      if (product.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(product);
       }
     }
     return ListView.builder(
-      itemCount:  matchQuery.length,
+      itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
         return ListTile(
