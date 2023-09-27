@@ -49,19 +49,19 @@ class PosScreen extends StatelessWidget {
 }
 
 class _PosView extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const Options(),
         Expanded(
-            child: ListView(
+          child: ListView(
           padding: const EdgeInsets.all(10),
           children: const [
             ProductPosPreview(
               sku: '000',
               nombre: 'Hello',
-              cantidad: 3,
               precio: 4,
             ),
           ],
