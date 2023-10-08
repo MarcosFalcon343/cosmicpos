@@ -1,7 +1,8 @@
-import 'package:cosmicpos/views/POS/options.dart';
-import 'package:cosmicpos/views/POS/preview.dart';
-import 'package:cosmicpos/views/POS/product_pos.dart';
-import 'package:cosmicpos/views/widgets/menus/drawer.dart';
+import 'package:cosmicpos/app/utils/utils.dart';
+import 'package:cosmicpos/app/views/POS/options.dart';
+import 'package:cosmicpos/app/views/POS/preview.dart';
+import 'package:cosmicpos/app/views/POS/product_pos.dart';
+import 'package:cosmicpos/app/views/widgets/menus/drawer.dart';
 import 'package:flutter/material.dart';
 
 class PosScreen extends StatelessWidget {
@@ -13,23 +14,7 @@ class PosScreen extends StatelessWidget {
     final color = Theme.of(context).colorScheme;
     return Scaffold(
         drawer: const drawer(),
-        appBar: AppBar(
-          title: const Text('Ventas'),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: color.inversePrimary),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.person),
-                ),
-              ),
-            )
-          ],
-          centerTitle: true,
-        ),
+        appBar: Utils().appbar(context, 'Ventas'),
         body: _PosView(),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 60),
@@ -49,14 +34,13 @@ class PosScreen extends StatelessWidget {
 }
 
 class _PosView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const Options(),
         Expanded(
-          child: ListView(
+            child: ListView(
           padding: const EdgeInsets.all(10),
           children: const [
             ProductPosPreview(

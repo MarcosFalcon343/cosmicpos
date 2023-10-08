@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class ProductPosPreview extends StatelessWidget {
   final String sku;
@@ -22,12 +21,7 @@ class ProductPosPreview extends StatelessWidget {
         onLongPress: () {
           print('Hello');
         },
-        onPressed: ()  async{
-          Hive.initFlutter();
-          var box = await Hive.openBox('mybox');
-          var productos = box.get('productos');
-          print('Productos: $productos');
-        },
+        onPressed: () async {},
         child: Column(
           children: [
             Row(
@@ -44,47 +38,12 @@ class ProductPosPreview extends StatelessWidget {
                           '100',
                           style: TextStyle(color: Colors.black),
                         ))),
-                // Container(
-                //   height: 30,
-                //   width: 50,
-                //   decoration: BoxDecoration(
-                //      borderRadius: BorderRadius.circular(20),
-                //     color: Colors.white
-                //   ),
-                //   child:  Center(
-                //     child: TextButton(onPressed: (){}, child: const Text('100',style: TextStyle(color: Colors.black),)),
-                //   )
-                // )
               ],
             ),
           ],
         ));
   }
 }
-
-// class _ProductoSubtotal extends StatelessWidget {
-//   const _ProductoSubtotal({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Container(
-//         height: 35,
-//         width: 100,
-//         decoration: BoxDecoration(
-//             color: Colors.white, borderRadius: BorderRadius.circular(20)),
-//         child: const Center(
-//           child: Text(
-//             '\$ 1,000,000.00',
-//             style: TextStyle(color: Colors.black),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class _datosProducto extends StatelessWidget {
   const _datosProducto();

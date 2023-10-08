@@ -1,4 +1,4 @@
-import 'package:cosmicpos/helpers/image_helpers.dart';
+import 'package:cosmicpos/app/helpers/image_helpers.dart';
 import 'package:flutter/material.dart';
 
 class Options extends StatelessWidget {
@@ -76,7 +76,7 @@ class CustomSearchDelegate extends SearchDelegate {
   List<String> searchTerms = [];
 
   @override
-  String get searchFieldLabel => 'Buscar en el carritoo';
+  String get searchFieldLabel => 'Buscar en el carrito';
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [

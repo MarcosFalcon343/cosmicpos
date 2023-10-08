@@ -1,4 +1,4 @@
-import 'package:cosmicpos/helpers/image_helpers.dart';
+import 'package:cosmicpos/app/helpers/image_helpers.dart';
 import 'package:flutter/material.dart';
 
 class Preview extends StatelessWidget {
@@ -11,7 +11,7 @@ class Preview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20,bottom: 20, right: 15, left: 15),
+      padding: const EdgeInsets.only(top: 20, bottom: 20, right: 15, left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
         color: const Color(0xFFF0EFF4),
