@@ -1,11 +1,12 @@
-import 'package:cosmicpos/app/theme/app_theme.dart';
-import 'package:cosmicpos/app/views/POS/pos_screen.dart';
+import 'package:cosmicpos/app/core/theme/app_theme.dart';
+import 'package:cosmicpos/app/data/models/Productos/categoria.dart';
+import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
-  //await Hive.openBox('productos');
+  Hive.registerAdapter(CategoriaAdapter());
   runApp(const MyApp());
 }
 
