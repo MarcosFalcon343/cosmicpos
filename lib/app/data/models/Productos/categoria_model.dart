@@ -2,12 +2,13 @@ import 'package:cosmicpos/app/data/models/Productos/categoria.dart';
 import 'package:hive/hive.dart';
 
 class CategoriaModel {
-
   CategoriaModel();
 
   Future<void> addCategoria(String name) async {
     final categoriaBox = await Hive.openBox<Categoria>('categorias');
-    Categoria categoria = Categoria(id: '${categoriaBox.length + 1}', nombre: name);
+    Categoria categoria =
+        Categoria(id: '${categoriaBox.length + 1}', nombre: name);
+    categoria.key;
     await categoriaBox.put(categoria.id, categoria);
   }
 
@@ -33,9 +34,15 @@ class CategoriaModel {
   }
 
   Future<bool> categoriaExists(String name) async {
-  final categoriaBox = await Hive.openBox<Categoria>('categorias');
-  final categorias = categoriaBox.values;
-  return categorias.any((categoria) => categoria.nombre == name);
+    final categoriaBox = await Hive.openBox<Categoria>('categorias');
+    final categorias = categoriaBox.values;
+    return categorias.any((categoria) => categoria.nombre == name);
   }
 
+  Future<void> categoriaResetBox() async {
+    final categoriaBox = await Hive.openBox<Categoria>('categorias');
+    await categoriaBox.clear();
+    print('Done');
+    categoriaBox.close();
+  }
 }

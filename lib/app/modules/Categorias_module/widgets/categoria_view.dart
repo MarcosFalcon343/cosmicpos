@@ -1,13 +1,16 @@
+import 'package:cosmicpos/app/data/models/Productos/categoria.dart';
 import 'package:flutter/material.dart';
 
 class CategoriaView extends StatelessWidget {
   const CategoriaView(
       {super.key,
-      required this.nombreCategoria,
-      this.color = const Color(0xFF66717E)});
+      required this.categoria,
+      this.color = const Color(0xFF66717E),
+      this.onPress});
 
-  final String nombreCategoria;
+  final Categoria categoria;
   final Color? color;
+  final VoidCallback? onPress;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,15 +20,12 @@ class CategoriaView extends StatelessWidget {
             style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(color),
                 alignment: Alignment.centerLeft),
-            onLongPress: () {
-              print('Hello');
-            },
-            onPressed: () {},
+            onPressed: onPress,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  nombreCategoria,
+                  categoria.nombre,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,

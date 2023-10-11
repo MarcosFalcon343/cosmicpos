@@ -1,1 +1,3 @@
-class Usuario {}
+class Usuario {
+  Usuario();
+}

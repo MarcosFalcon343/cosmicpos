@@ -1,9 +1,10 @@
 import 'package:cosmicpos/app/modules/Categorias_module/categorias_screen.dart';
+import 'package:cosmicpos/app/modules/Categorias_module/controller_categoria.dart';
 import 'package:cosmicpos/app/modules/Clientes_module/clientes_screen.dart';
 import 'package:cosmicpos/app/modules/Inventario_module/inventario_screen.dart';
 import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
 import 'package:cosmicpos/app/modules/Productos_module/productos_screen.dart';
-import 'package:cosmicpos/app/modules/Reportes_module/proveedores_screen.dart';
+import 'package:cosmicpos/app/modules/Proveedores_module/provedores_screen.dart';
 import 'package:cosmicpos/app/modules/Usuarios_module/usuarios_screen.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_option.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_user.dart';
@@ -58,15 +59,15 @@ class drawer extends StatelessWidget {
               }));
             },
           ),
-          DrawerOption(
-            url: 'assets/chart-bar.svg',
-            text: 'Reportes',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return const ProveedoresScreen();
-              }));
-            },
-          ),
+          // DrawerOption(
+          //   url: 'assets/chart-bar.svg',
+          //   text: 'Reportes',
+          //   onTap: () {
+          //     Navigator.push(context, MaterialPageRoute(builder: (c) {
+          //       return const ProveedoresScreen();
+          //     }));
+          //   },
+          // ),
           DrawerOption(
             url: 'assets/account.svg',
             text: 'Clientes',
@@ -99,7 +100,9 @@ class drawer extends StatelessWidget {
             text: 'Categorias',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return  CategoriasScreen();
+                return CategoriasScreen(
+                  controller: CategoriaController(),
+                );
               }));
             },
           ),

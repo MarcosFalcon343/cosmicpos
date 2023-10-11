@@ -1,8 +1,9 @@
-import 'package:cosmicpos/app/data/providers/producto_provider.dart';
+import 'package:cosmicpos/app/data/models/Productos/categoria_model.dart';
+import 'package:cosmicpos/app/modules/Categorias_module/controller_categoria.dart';
 import 'package:flutter/material.dart';
 
 class CategoriaForm extends StatefulWidget {
-  const CategoriaForm({super.key, String? nombre, String? numeroProductos});
+  const CategoriaForm({super.key});
 
   @override
   CategoriaFormState createState() {
@@ -12,6 +13,7 @@ class CategoriaForm extends StatefulWidget {
 
 class CategoriaFormState extends State<CategoriaForm> {
   final _formKey = GlobalKey<FormState>();
+  final CategoriaController controller = CategoriaController();
 
   final TextEditingController nombreController = TextEditingController();
 
@@ -20,48 +22,59 @@ class CategoriaFormState extends State<CategoriaForm> {
     nombreController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxHeight: 200,
-        ),
-        child: Card(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Agregar Categoria', style: TextStyle(
-                  fontSize: 18
-                ),),
-                TextFormField(
-                  decoration: const InputDecoration(hintText: ' Nombre'),
-                  controller: nombreController,
-                ),
-                const SizedBox(height: 10,),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FilledButton(
-                        child: const Text('Guardar'),
-                        onPressed: () async{
-                          CategoriaProvider.addCategoria(nombreController.text);
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      const SizedBox(width: 10,),
-                      FilledButton(onPressed: (){
+    return Card(
+      color: Colors.transparent,
+      elevation: 0,
+      child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Agregar Categoria',
+                style: TextStyle(fontSize: 18),
+              ),
+              TextFormField(
+                decoration: const InputDecoration(hintText: ' Nombre'),
+                controller: nombreController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, ingresa un nombre válido.';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Wrap(
+                children: [
+                  FilledButton(
+                    child: const Text('Guardar'),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate() &&
+                          nombreController.text.isNotEmpty) {
+                        controller.agregarCategoria(nombreController.text);
+                        Navigator.of(context).pop(1);
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  FilledButton(
+                      onPressed: () {
                         Navigator.of(context).pop();
-                        }, 
-                        child: const Text('Cancelar'))
-                    ],
-                  )
-              ],
-            )),
-    ),
-      ),
+                        //CategoriaModel().categoriaResetBox();
+                      },
+                      child: const Text('Cancelar'))
+                ],
+              )
+            ],
+          )),
     );
   }
 }

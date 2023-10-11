@@ -1,7 +1,7 @@
 import 'package:cosmicpos/app/core/theme/utils/utils.dart';
-import 'package:cosmicpos/app/modules/POS_module/options.dart';
-import 'package:cosmicpos/app/modules/POS_module/preview.dart';
-import 'package:cosmicpos/app/modules/POS_module/product_pos.dart';
+import 'package:cosmicpos/app/modules/POS_module/Widgets/options.dart';
+import 'package:cosmicpos/app/modules/POS_module/Widgets/preview.dart';
+import 'package:cosmicpos/app/modules/POS_module/Widgets/product_pos.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer.dart';
 import 'package:flutter/material.dart';
 

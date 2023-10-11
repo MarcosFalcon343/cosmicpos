@@ -8,7 +8,7 @@ class ProductosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: drawer(),
+      drawer: const drawer(),
       appBar: Utils().appbar(context, 'Productos'),
       body: const Text('Hello'),
     );

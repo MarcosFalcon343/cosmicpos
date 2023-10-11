@@ -1,6 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 part 'categoria.g.dart';
 
 @HiveType(typeId: 0)
@@ -12,7 +11,7 @@ class Categoria extends HiveObject {
   @HiveField(2)
   bool active;
 
-  Categoria({required this.id, required this.nombre,this.active = true});
+  Categoria({required this.id, required this.nombre, this.active = true});
 
   @override
   String toString() {
@@ -20,7 +19,8 @@ class Categoria extends HiveObject {
   }
 
   factory Categoria.fromJson(Map<String, dynamic> json) {
-    return Categoria(id: json['id'], nombre: json['nombre'],active: json['active']);
+    return Categoria(
+        id: json['id'], nombre: json['nombre'], active: json['active']);
   }
 
   Map<String, dynamic> toJson() {

@@ -19,17 +19,20 @@ class CategoriaAdapter extends TypeAdapter<Categoria> {
     return Categoria(
       id: fields[0] as String,
       nombre: fields[1] as String,
+      active: fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Categoria obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.nombre);
+      ..write(obj.nombre)
+      ..writeByte(2)
+      ..write(obj.active);
   }
 
   @override
