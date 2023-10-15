@@ -5,7 +5,7 @@ class CategoriaController {
   CategoriaController();
 
   Future<List<Categoria>> cargarCategorias() async {
-    final categorias = await CategoriaProvider.getAllCategoriasActivas();
+    final categorias = await CategoriaProvider.getAllCategorias();
     return categorias;
   }
 
@@ -13,11 +13,11 @@ class CategoriaController {
     CategoriaProvider.addCategoria(name);
   }
 
-  void actualizarCategoria(String id, String nuevo) {
-    CategoriaProvider.updateCategoria(id, nuevo);
+  void actualizarCategoria(int key, Categoria nuevo) {
+    CategoriaProvider.updateCategoria(key, nuevo);
   }
 
-  void eliminarCategoria(String id) {
-    CategoriaProvider.delateCategoria(id);
+  void eliminarCategoria(int key) {
+    CategoriaProvider.deleteCategoria(key);
   }
 }

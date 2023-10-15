@@ -10,32 +10,19 @@ class CategoriaProvider {
         : await model.addCategoria(name);
   }
 
-  static void delateCategoria(String id) async {
-    Categoria? categoria = await model.getCategoria(id);
+  static void deleteCategoria(int key) async {
+    await model.deleteCategoria(key);
+  }
+
+  static void updateCategoria(int key, Categoria categoria) async {
+    Categoria? categoria = await model.getCategoria(key);
     categoria != null
-        ? categoria.active = false
+        ? await model.updateCategoria(key, categoria)
         : print('No existe la categoria');
   }
 
-  static void updateCategoria(String id, String nombre) async {
-    Categoria? categoria = await model.getCategoria(id);
-    categoria != null
-        ? await model.updateCategoria(id, Categoria(id: id, nombre: nombre))
-        : print('No existe la categoria');
-  }
-
-  static Future<Categoria?> getCategoria(String id) async {
-    return await model.getCategoria(id);
-  }
-
-  static Future<List<Categoria>> getAllCategoriasActivas() async {
-    List<Categoria> categorias = await model.getAllCategorias();
-    List<Categoria> activas = [];
-
-    for (Categoria c in categorias) {
-      if (c.active) activas.add(c);
-    }
-    return activas;
+  static Future<Categoria?> getCategoria(int key) async {
+    return await model.getCategoria(key);
   }
 
   static Future<List<Categoria>> getAllCategorias() async {

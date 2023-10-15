@@ -17,7 +17,6 @@ class ProveedorAdapter extends TypeAdapter<Proveedor> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Proveedor(
-      id: fields[0] as String,
       nombres: fields[1] as String,
       apellidoPaterno: fields[2] as String,
       apellidoMaterno: fields[3] as String,
@@ -30,9 +29,7 @@ class ProveedorAdapter extends TypeAdapter<Proveedor> {
   @override
   void write(BinaryWriter writer, Proveedor obj) {
     writer
-      ..writeByte(7)
-      ..writeByte(0)
-      ..write(obj.id)
+      ..writeByte(6)
       ..writeByte(1)
       ..write(obj.nombres)
       ..writeByte(2)

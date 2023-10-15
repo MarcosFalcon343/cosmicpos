@@ -65,10 +65,10 @@ class CategoriaEditState extends State<CategoriaEdit> {
                   onPressed: () {
                     if (_formKey.currentState!.validate() &&
                         nombreController.text.isNotEmpty) {
+                      print(widget.categoria.key as int);
+                      widget.categoria.nombre = nombreController.text;
                       widget.controller.actualizarCategoria(
-                        widget.categoria.id,
-                        nombreController.text,
-                      );
+                          widget.categoria.key as int, widget.categoria);
                       Navigator.of(context).pop(1);
                     }
                   },
@@ -88,7 +88,8 @@ class CategoriaEditState extends State<CategoriaEdit> {
                 ),
                 IconButton(
                     onPressed: () {
-                      widget.controller.eliminarCategoria(widget.categoria.id);
+                      widget.controller
+                          .eliminarCategoria(widget.categoria.key as int);
                       Navigator.of(context).pop(1);
                     },
                     icon: const Icon(Icons.delete))

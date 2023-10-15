@@ -17,22 +17,16 @@ class CategoriaAdapter extends TypeAdapter<Categoria> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Categoria(
-      id: fields[0] as String,
       nombre: fields[1] as String,
-      active: fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Categoria obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.nombre)
-      ..writeByte(2)
-      ..write(obj.active);
+      ..writeByte(1)
+      ..write(obj.nombre);
   }
 
   @override

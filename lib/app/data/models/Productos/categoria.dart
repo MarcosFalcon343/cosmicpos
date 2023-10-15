@@ -4,26 +4,21 @@ part 'categoria.g.dart';
 
 @HiveType(typeId: 0)
 class Categoria extends HiveObject {
-  @HiveField(0)
-  final String id;
   @HiveField(1)
-  final String nombre;
-  @HiveField(2)
-  bool active;
+  String nombre;
 
-  Categoria({required this.id, required this.nombre, this.active = true});
+  Categoria({required this.nombre});
 
   @override
   String toString() {
-    return 'Categoria{id: $id, nombre: $nombre}, active: $active';
+    return 'Categoria{nombre: $nombre}';
   }
 
   factory Categoria.fromJson(Map<String, dynamic> json) {
-    return Categoria(
-        id: json['id'], nombre: json['nombre'], active: json['active']);
+    return Categoria(nombre: json['nombre']);
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'nombre': nombre, 'active': active};
+    return {'nombre': nombre};
   }
 }

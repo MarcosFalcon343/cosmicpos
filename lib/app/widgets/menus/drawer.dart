@@ -5,6 +5,7 @@ import 'package:cosmicpos/app/modules/Inventario_module/inventario_screen.dart';
 import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
 import 'package:cosmicpos/app/modules/Productos_module/productos_screen.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/provedores_screen.dart';
+import 'package:cosmicpos/app/modules/Proveedores_module/proveedor_controller.dart';
 import 'package:cosmicpos/app/modules/Usuarios_module/usuarios_screen.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_option.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_user.dart';
@@ -91,7 +92,7 @@ class drawer extends StatelessWidget {
             text: 'Proveedores',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return const ProveedoresScreen();
+                return ProveedoresScreen(controller: ProveedorController());
               }));
             },
           ),
@@ -100,9 +101,7 @@ class drawer extends StatelessWidget {
             text: 'Categorias',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return CategoriasScreen(
-                  controller: CategoriaController(),
-                );
+                return CategoriasScreen(controller: CategoriaController());
               }));
             },
           ),

@@ -1,3 +1,5 @@
+import 'package:cosmicpos/app/data/models/Actores/provedor.dart';
+import 'package:cosmicpos/app/modules/Proveedores_module/proveedor_controller.dart';
 import 'package:flutter/material.dart';
 
 class ProveedorForm extends StatefulWidget {
@@ -9,6 +11,13 @@ class ProveedorForm extends StatefulWidget {
 
 class _ProveedorFormState extends State<ProveedorForm> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController nombresController = TextEditingController();
+  TextEditingController paternoController = TextEditingController();
+  TextEditingController maternoController = TextEditingController();
+  TextEditingController telefonoController = TextEditingController();
+  TextEditingController nombreComercialController = TextEditingController();
+  TextEditingController giroComercialController = TextEditingController();
+  ProveedorController controller = ProveedorController();
   @override
   void dispose() {
     // TODO: implement dispose
@@ -39,22 +48,37 @@ class _ProveedorFormState extends State<ProveedorForm> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: nombresController,
                   decoration: const InputDecoration(
                       label: Text('Nombre(s): *'),
                       border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
+                  controller: paternoController,
                   decoration: const InputDecoration(
                       label: Text('Apellido Paterno: *'),
                       border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
+                    controller: maternoController,
                     decoration: const InputDecoration(
                         label: Text('Apellido Materno:'),
                         border: OutlineInputBorder())),
@@ -62,20 +86,36 @@ class _ProveedorFormState extends State<ProveedorForm> {
                   height: 5,
                 ),
                 TextFormField(
-                    decoration: const InputDecoration(
-                        label: Text('Telefono: *'),
-                        border: OutlineInputBorder())),
+                  controller: telefonoController,
+                  decoration: const InputDecoration(
+                      label: Text('Telefono: *'), border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
+                ),
                 const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
-                    decoration: const InputDecoration(
-                        label: Text('Nombre comercial: *'),
-                        border: OutlineInputBorder())),
+                  controller: nombreComercialController,
+                  decoration: const InputDecoration(
+                      label: Text('Nombre comercial: *'),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
+                ),
                 const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
+                    controller: giroComercialController,
                     decoration: const InputDecoration(
                         label: Text('Giro comercial'),
                         border: OutlineInputBorder())),
@@ -89,7 +129,20 @@ class _ProveedorFormState extends State<ProveedorForm> {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     FilledButton(
-                        onPressed: () {}, child: const Text('Guardar')),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Proveedor proveedor = Proveedor(
+                                nombres: nombresController.text,
+                                apellidoPaterno: paternoController.text,
+                                apellidoMaterno: maternoController.text,
+                                telefono: telefonoController.text,
+                                nombreComercial: nombreComercialController.text,
+                                giroComercial: giroComercialController.text);
+                            //controller.agregarProveedor(proveedor);
+                            Navigator.of(context).pop(1);
+                          }
+                        },
+                        child: const Text('Guardar')),
                     const SizedBox(
                       width: 30,
                     ),
