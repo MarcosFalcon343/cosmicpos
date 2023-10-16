@@ -20,7 +20,12 @@ class _ProveedorFormState extends State<ProveedorForm> {
   ProveedorController controller = ProveedorController();
   @override
   void dispose() {
-    // TODO: implement dispose
+    nombresController.dispose();
+    paternoController.dispose();
+    maternoController.dispose();
+    telefonoController.dispose();
+    nombreComercialController.dispose();
+    giroComercialController.dispose();
     super.dispose();
   }
 
@@ -87,11 +92,12 @@ class _ProveedorFormState extends State<ProveedorForm> {
                 ),
                 TextFormField(
                   controller: telefonoController,
+                  keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
                       label: Text('Telefono: *'), border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, ingresa un nombre válido.';
+                      return 'Por favor, ingresa un numero válido.';
                     }
                     return null;
                   },
@@ -138,7 +144,7 @@ class _ProveedorFormState extends State<ProveedorForm> {
                                 telefono: telefonoController.text,
                                 nombreComercial: nombreComercialController.text,
                                 giroComercial: giroComercialController.text);
-                            //controller.agregarProveedor(proveedor);
+                            controller.agregarProveedor(proveedor);
                             Navigator.of(context).pop(1);
                           }
                         },

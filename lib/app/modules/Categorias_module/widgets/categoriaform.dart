@@ -1,4 +1,3 @@
-import 'package:cosmicpos/app/data/models/Productos/categoria_model.dart';
 import 'package:cosmicpos/app/modules/Categorias_module/controller_categoria.dart';
 import 'package:flutter/material.dart';
 

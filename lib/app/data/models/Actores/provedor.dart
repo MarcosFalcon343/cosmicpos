@@ -3,26 +3,26 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'provedor.g.dart';
 
 @HiveType(typeId: 1)
-class Proveedor {
+class Proveedor extends HiveObject {
+  @HiveField(0)
+  String nombres;
   @HiveField(1)
-  final String nombres;
+  String apellidoPaterno;
   @HiveField(2)
-  final String apellidoPaterno;
+  String? apellidoMaterno;
   @HiveField(3)
-  final String? apellidoMaterno;
+  String nombreComercial;
   @HiveField(4)
-  final String nombreComercial;
+  String telefono;
   @HiveField(5)
-  final String? telefono;
-  @HiveField(6)
-  final String? giroComercial;
+  String? giroComercial;
 
   Proveedor(
       {required this.nombres,
       required this.apellidoPaterno,
       this.apellidoMaterno,
       required this.nombreComercial,
-      this.telefono,
+      required this.telefono,
       this.giroComercial});
 
   @override

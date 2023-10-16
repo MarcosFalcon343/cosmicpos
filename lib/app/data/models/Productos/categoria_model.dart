@@ -38,7 +38,6 @@ class CategoriaModel {
   Future<void> categoriaResetBox() async {
     final categoriaBox = await Hive.openBox<Categoria>('categorias');
     await categoriaBox.clear();
-    print('Done');
     categoriaBox.close();
   }
 }

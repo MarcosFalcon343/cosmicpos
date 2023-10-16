@@ -1,4 +1,5 @@
 import 'package:cosmicpos/app/core/theme/app_theme.dart';
+import 'package:cosmicpos/app/data/models/Actores/provedor.dart';
 import 'package:cosmicpos/app/data/models/Productos/categoria.dart';
 import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CategoriaAdapter());
+  Hive.registerAdapter(ProveedorAdapter());
   runApp(const MyApp());
 }
 

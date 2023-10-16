@@ -78,15 +78,15 @@ class drawer extends StatelessWidget {
               }));
             },
           ),
-          DrawerOption(
-            url: 'assets/account-multiple.svg',
-            text: 'Usuarios',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return const UsuariosScreen();
-              }));
-            },
-          ),
+          // DrawerOption(
+          //   url: 'assets/account-multiple.svg',
+          //   text: 'Usuarios',
+          //   onTap: () {
+          //     Navigator.push(context, MaterialPageRoute(builder: (c) {
+          //       return const UsuariosScreen();
+          //     }));
+          //   },
+          // ),
           DrawerOption(
             url: 'assets/truck-delivery.svg',
             text: 'Proveedores',

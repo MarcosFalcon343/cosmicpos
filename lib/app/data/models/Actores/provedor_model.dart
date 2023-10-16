@@ -39,7 +39,6 @@ class ProveedorModel {
   Future<void> proveedorResetBox() async {
     final proveedorBox = await Hive.openBox<Proveedor>('provedores');
     await proveedorBox.clear();
-    print('Done');
     proveedorBox.close();
   }
 }

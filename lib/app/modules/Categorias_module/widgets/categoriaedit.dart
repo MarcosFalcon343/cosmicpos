@@ -65,7 +65,6 @@ class CategoriaEditState extends State<CategoriaEdit> {
                   onPressed: () {
                     if (_formKey.currentState!.validate() &&
                         nombreController.text.isNotEmpty) {
-                      print(widget.categoria.key as int);
                       widget.categoria.nombre = nombreController.text;
                       widget.controller.actualizarCategoria(
                           widget.categoria.key as int, widget.categoria);

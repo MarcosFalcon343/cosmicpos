@@ -3,6 +3,7 @@ import 'package:cosmicpos/app/core/theme/utils/utils.dart';
 import 'package:cosmicpos/app/data/models/Actores/provedor.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/Widget/provedor_view.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/Widget/proveedor_form.dart';
+import 'package:cosmicpos/app/modules/Proveedores_module/Widget/proveedor_formEdit.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/proveedor_controller.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer.dart';
 import 'package:flutter/material.dart';
@@ -51,15 +52,33 @@ class _ProveedoresScreenState extends State<ProveedoresScreen> {
                 itemCount: _provedores.length,
                 itemBuilder: (context, index) {
                   return ProveedorView(
-                      onPress: () {}, proveedor: _provedores[index]);
+                      onPress: () {
+                        Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProveedorEditForm(
+                                        provedor: _provedores[index])))
+                            .then((value) {
+                          if (value != null) {
+                            _cargar();
+                          }
+                        });
+                      },
+                      proveedor: _provedores[index]);
                 }),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProveedorForm()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ProveedorForm())).then((value) {
+            if (value != null) {
+              _cargar();
+            }
+          });
         },
         shape: const CircleBorder(),
         backgroundColor: (Theme.of(context).brightness == Brightness.dark)
