@@ -6,7 +6,7 @@ part of 'cliente.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ClientesAdapter extends TypeAdapter<Cliente> {
+class ClienteAdapter extends TypeAdapter<Cliente> {
   @override
   final int typeId = 2;
 
@@ -47,7 +47,7 @@ class ClientesAdapter extends TypeAdapter<Cliente> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ClientesAdapter &&
+      other is ClienteAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

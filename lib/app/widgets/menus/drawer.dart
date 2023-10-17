@@ -1,5 +1,6 @@
 import 'package:cosmicpos/app/modules/Categorias_module/categorias_screen.dart';
 import 'package:cosmicpos/app/modules/Categorias_module/controller_categoria.dart';
+import 'package:cosmicpos/app/modules/Clientes_module/clientes_controller.dart';
 import 'package:cosmicpos/app/modules/Clientes_module/clientes_screen.dart';
 import 'package:cosmicpos/app/modules/Inventario_module/inventario_screen.dart';
 import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
@@ -74,7 +75,9 @@ class drawer extends StatelessWidget {
             text: 'Clientes',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return const ClientesScreen();
+                return ClientesScreen(
+                  controller: ClientesController(),
+                );
               }));
             },
           ),

@@ -4,9 +4,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 class ClienteModel {
   ClienteModel();
 
-  Future<void> addProvedor(Cliente proveedor) async {
+  Future<void> addCliente(Cliente cliente) async {
     final clienteBox = await Hive.openBox<Cliente>('clientes');
-    await clienteBox.add(proveedor);
+    await clienteBox.add(cliente);
   }
 
   Future<Cliente?> getCliente(int key) async {
@@ -20,9 +20,9 @@ class ClienteModel {
     return clientes;
   }
 
-  Future<void> updateCliente(int key, Cliente proveedor) async {
+  Future<void> updateCliente(int key, Cliente cliente) async {
     final clienteBox = await Hive.openBox<Cliente>('clientes');
-    await clienteBox.put(key, proveedor);
+    await clienteBox.put(key, cliente);
   }
 
   Future<void> deleteCliente(int key) async {
@@ -36,7 +36,7 @@ class ClienteModel {
   //   return proveedor.any((categoria) => categoria.nombre == name);
   // }
 
-  Future<void> clienterResetBox() async {
+  Future<void> clientesResetBox() async {
     final clienteBox = await Hive.openBox<Cliente>('clientes');
     await clienteBox.clear();
     clienteBox.close();

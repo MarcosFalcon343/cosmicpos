@@ -1,0 +1,170 @@
+import 'package:cosmicpos/app/data/models/Actores/cliente.dart';
+import 'package:cosmicpos/app/modules/Clientes_module/clientes_controller.dart';
+import 'package:flutter/material.dart';
+
+class ClienteEditForm extends StatefulWidget {
+  const ClienteEditForm({Key? key, required this.cliente}) : super(key: key);
+  final Cliente cliente;
+  @override
+  State<ClienteEditForm> createState() => _ClienteFormState();
+}
+
+class _ClienteFormState extends State<ClienteEditForm> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController nombresController = TextEditingController();
+  TextEditingController paternoController = TextEditingController();
+  TextEditingController maternoController = TextEditingController();
+  TextEditingController telefonoController = TextEditingController();
+  TextEditingController correoController = TextEditingController();
+  ClientesController controller = ClientesController();
+
+  @override
+  void initState() {
+    nombresController.text = widget.cliente.nombres.toString();
+    paternoController.text = widget.cliente.apellidoPaterno.toString();
+    maternoController.text = widget.cliente.apellidoMaterno.toString();
+    telefonoController.text = widget.cliente.telefono.toString();
+    correoController.text = widget.cliente.correo.toString();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nombresController.dispose();
+    paternoController.dispose();
+    maternoController.dispose();
+    telefonoController.dispose();
+    correoController.dispose();
+    super.dispose();
+  }
+
+  void close() {
+    Navigator.of(context).pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => close(),
+            icon: const Icon(Icons.arrow_back_ios_new)),
+        title: const Text(
+          'Editar Cliente',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: nombresController,
+                  decoration: const InputDecoration(
+                      label: Text('Nombre(s): *'),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  controller: paternoController,
+                  decoration: const InputDecoration(
+                      label: Text('Apellido Paterno: *'),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  controller: maternoController,
+                  decoration: const InputDecoration(
+                      label: Text('Apellido Materno:'),
+                      border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa un nombre válido.';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  controller: telefonoController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                      label: Text('Telefono:'), border: OutlineInputBorder()),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  controller: correoController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      label: Text('Correo:'), border: OutlineInputBorder()),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    FilledButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            widget.cliente.nombres = nombresController.text;
+                            widget.cliente.apellidoPaterno =
+                                paternoController.text;
+                            widget.cliente.apellidoMaterno =
+                                maternoController.text;
+                            widget.cliente.telefono = telefonoController.text;
+                            widget.cliente.correo = correoController.text;
+                            controller.actualizarCliente(
+                                widget.cliente.key as int, widget.cliente);
+                            Navigator.of(context).pop(1);
+                          }
+                        },
+                        child: const Text('Guardar')),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    FilledButton(
+                        onPressed: () => close(),
+                        child: const Text('Cancelar')),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          controller.eliminarCliente(widget.cliente.key);
+                          Navigator.of(context).pop(1);
+                        },
+                        icon: const Icon(Icons.delete))
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
