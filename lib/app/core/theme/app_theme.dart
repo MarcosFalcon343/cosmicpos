@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 const Color _customColor = Color(0xFF003459);
 
-class AppTheme{
+class AppTheme {
   final bool darkMode;
 
   AppTheme({this.darkMode = false});
 
-  ThemeData theme(){
+  ThemeData theme() {
     return ThemeData(
       useMaterial3: true,
       colorSchemeSeed: _customColor,
