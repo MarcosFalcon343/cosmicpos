@@ -20,4 +20,8 @@ class CategoriaController {
   void eliminarCategoria(int key) {
     CategoriaProvider.deleteCategoria(key);
   }
+
+  Future<Categoria?> obtenerCategoria(int key) async {
+    return await CategoriaProvider.getCategoria(key);
+  }
 }

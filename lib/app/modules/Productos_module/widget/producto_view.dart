@@ -2,8 +2,10 @@ import 'package:cosmicpos/app/data/models/Productos/producto.dart';
 import 'package:flutter/material.dart';
 
 class ProductoView extends StatelessWidget {
-  Producto producto;
-  ProductoView({super.key, required this.producto});
+  final Producto producto;
+  final VoidCallback onPress;
+  const ProductoView(
+      {super.key, required this.producto, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +13,7 @@ class ProductoView extends StatelessWidget {
         height: 80,
         padding: const EdgeInsets.all(5),
         child: FilledButton(
+          onPressed: onPress,
           child: Row(
             children: [
               Container(
@@ -51,7 +54,6 @@ class ProductoView extends StatelessWidget {
               ))
             ],
           ),
-          onPressed: () {},
         ));
   }
 }

@@ -4,10 +4,10 @@ import 'package:cosmicpos/app/modules/Clientes_module/clientes_controller.dart';
 import 'package:cosmicpos/app/modules/Clientes_module/clientes_screen.dart';
 import 'package:cosmicpos/app/modules/Inventario_module/inventario_screen.dart';
 import 'package:cosmicpos/app/modules/POS_module/pos_screen.dart';
+import 'package:cosmicpos/app/modules/Productos_module/productos_controller.dart';
 import 'package:cosmicpos/app/modules/Productos_module/productos_screen.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/provedores_screen.dart';
 import 'package:cosmicpos/app/modules/Proveedores_module/proveedor_controller.dart';
-import 'package:cosmicpos/app/modules/Usuarios_module/usuarios_screen.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_option.dart';
 import 'package:cosmicpos/app/widgets/menus/drawer_user.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,9 @@ class drawer extends StatelessWidget {
             text: 'Productos',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (c) {
-                return const ProductosScreen();
+                return ProductosScreen(
+                  controller: ProductoController(),
+                );
               }));
             },
           ),

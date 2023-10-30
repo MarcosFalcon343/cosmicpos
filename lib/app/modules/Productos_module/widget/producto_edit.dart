@@ -8,14 +8,15 @@ import 'package:cosmicpos/app/modules/Proveedores_module/proveedor_controller.da
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProductoForm extends StatefulWidget {
-  const ProductoForm({super.key});
+class ProductoEdit extends StatefulWidget {
+  const ProductoEdit({super.key, required this.producto});
+  final Producto producto;
 
   @override
-  State<ProductoForm> createState() => _ProductoFormState();
+  State<ProductoEdit> createState() => _ProductoFormState();
 }
 
-class _ProductoFormState extends State<ProductoForm> {
+class _ProductoFormState extends State<ProductoEdit> {
   final _formKey = GlobalKey<FormState>();
   File? _image;
   final _picker = ImagePicker();
@@ -41,6 +42,11 @@ class _ProductoFormState extends State<ProductoForm> {
   @override
   void initState() {
     super.initState();
+    skuController.text = widget.producto.sku;
+    nombreController.text = widget.producto.nombre;
+    precioController.text = widget.producto.precio.toString();
+    costoController.text = widget.producto.costo.toString();
+    descripcionController.text = widget.producto.descripcion as String;
     _cargar();
   }
 
@@ -84,7 +90,7 @@ class _ProductoFormState extends State<ProductoForm> {
               onPressed: () => close(),
               icon: const Icon(Icons.arrow_back_ios_new)),
           title: const Text(
-            'Agregar producto',
+            'Actualizar producto',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
         ),
@@ -196,6 +202,7 @@ class _ProductoFormState extends State<ProductoForm> {
                       ),
                       const SizedBox(height: 15),
                       DropdownButtonFormField(
+                        value: null,
                         items: _buildCategoriasMenuItems(),
                         onChanged: (value) {
                           idCategoria = value as int;
@@ -213,6 +220,7 @@ class _ProductoFormState extends State<ProductoForm> {
                       ),
                       const SizedBox(height: 15),
                       DropdownButtonFormField(
+                        value: null,
                         items: _buildProveedorMenuItems(),
                         onChanged: (value) {
                           idProveedor = value as int;
@@ -269,16 +277,21 @@ class _ProductoFormState extends State<ProductoForm> {
                             child: const Text('Guardar'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                Producto producto = Producto(
-                                    sku: skuController.text,
-                                    nombre: nombreController.text,
-                                    precio: double.parse(precioController.text),
-                                    costo: double.parse(costoController.text),
-                                    estado: 'ACTIVO',
-                                    descripcion: descripcionController.text,
-                                    categoria: _categorias[idCategoria],
-                                    proveedor: _proveedores[idProveedor]);
-                                controller.agregarProducto(producto);
+                                widget.producto.sku = skuController.text;
+                                widget.producto.nombre = nombreController.text;
+                                widget.producto.precio =
+                                    double.parse(precioController.text);
+                                widget.producto.costo =
+                                    double.parse(costoController.text);
+                                widget.producto.estado = 'ACTIVO';
+                                widget.producto.descripcion =
+                                    descripcionController.text;
+                                widget.producto.categoria =
+                                    _categorias[idCategoria];
+                                widget.producto.proveedor =
+                                    _proveedores[idProveedor];
+                                controller.actualizarProducto(
+                                    widget.producto.key, widget.producto);
                                 Navigator.of(context).pop(1);
                               }
                             },

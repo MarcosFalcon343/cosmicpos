@@ -19,14 +19,14 @@ class ProductoAdapter extends TypeAdapter<Producto> {
     return Producto(
       sku: fields[0] as String,
       nombre: fields[1] as String,
-      precio: fields[2] as int,
-      costo: fields[3] as int,
+      precio: fields[2] as double,
+      costo: fields[3] as double,
       estado: fields[4] as String?,
       tipo: fields[5] as String?,
       imagen: fields[6] as String?,
       descripcion: fields[7] as String?,
-      categoria: fields[8] as Categoria?,
-      proveedor: fields[9] as Proveedor?,
+      categoria: fields[8] as Categoria,
+      proveedor: fields[9] as Proveedor,
     );
   }
 

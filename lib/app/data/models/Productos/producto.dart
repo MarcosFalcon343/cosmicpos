@@ -7,25 +7,25 @@ part 'producto.g.dart';
 @HiveType(typeId: 3)
 class Producto extends HiveObject {
   @HiveField(0)
-  final String sku;
+  String sku;
   @HiveField(1)
-  final String nombre;
+  String nombre;
   @HiveField(2)
-  final int precio;
+  double precio;
   @HiveField(3)
-  final int costo;
+  double costo;
   @HiveField(4)
-  final String? estado;
+  String? estado;
   @HiveField(5)
-  final String? tipo;
+  String? tipo;
   @HiveField(6)
-  final String? imagen;
+  String? imagen;
   @HiveField(7)
-  final String? descripcion;
+  String? descripcion;
   @HiveField(8)
-  final Categoria? categoria;
+  Categoria categoria;
   @HiveField(9)
-  final Proveedor? proveedor;
+  Proveedor proveedor;
 
   Producto(
       {required this.sku,
@@ -36,6 +36,11 @@ class Producto extends HiveObject {
       this.tipo = 'PIEZA',
       this.imagen = 'NOT IMAGE',
       this.descripcion,
-      this.categoria,
-      this.proveedor});
+      required this.categoria,
+      required this.proveedor});
+
+  @override
+  String toString() {
+    return 'Producto(sku: $sku, nombre: $nombre, precio: $precio, costo: $costo, estado: $estado, tipo: $tipo, imagen: $imagen, descripcion: $descripcion, categoria: $categoria, proveedor: $proveedor)';
+  }
 }
